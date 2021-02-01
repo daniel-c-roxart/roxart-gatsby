@@ -1,7 +1,11 @@
 import React from 'react';
+import { Link } from 'gatsby';
+import Button from '../components/atoms/Button/Button';
 
 const ContactPage = () => (
-  <h1>Kontakt</h1>
+  <Button component={Link} to="/">
+    Strona główna
+  </Button>
 );
 
 export default ContactPage;

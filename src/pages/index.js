@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
-import Container from '../components/Container/Container';
+import Container from '../components/atoms/Container/Container';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
+import Button from '../components/atoms/Button/Button';
+import IndexStandsOutTile from '../components/molecules/IndexStandsOutTile/IndexStandsOutTile';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,6 +17,8 @@ const Wrapper = styled.div`
   flex: 0 0 50%;
   max-width: 50%;
   flex-direction: column;
+  padding-top: 100px;
+  margin-bottom: 100px;
 
 
     div {
@@ -37,6 +41,7 @@ const WhatWeDoWrapper = styled.div`
   line-height: 1.2;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 
   a, span {
     color: ${({ theme }) => theme.moreBlack};
@@ -56,6 +61,61 @@ const WhatWeDoWrapper = styled.div`
   span {
     margin: 0 4px;
   }
+`;
+
+const SmallHeroButton = styled(Button)`
+  margin-right: 20px;
+`;
+
+const HeroImagesWrapper = styled(Wrapper)`
+    position: relative;
+
+      .gatsby-image-wrapper{
+
+          &:not(:first-child) {
+            position: absolute !important;
+            max-width: 100%;
+            z-index: -1; 
+          }
+          :first-child {
+            z-index: 1;
+          }
+          :last-child {
+            bottom: 0;
+            right: -20px;
+          }
+      
+      }
+`;
+
+const SecondContainer = styled(Container)`
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    margin-bottom: .5rem;
+    margin-top: 0;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  p {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+`;
+
+const StandsOutContainer = styled(Container)`
+  margin-top: 60px;
 `;
 
 const IndexPage = ({ data }) => (
@@ -130,20 +190,118 @@ const IndexPage = ({ data }) => (
           <strong>Rzeszowa</strong>
           , lecz całej Polski.
         </Paragraph>
+        <div className="buttonContainer">
+          <SmallHeroButton to="/about" secondary>
+            O nas
+          </SmallHeroButton>
+          <Button to="/portfolio" target="_blank">
+            Zobacz portfolio
+          </Button>
+        </div>
       </Wrapper>
-      <Wrapper>
-        <Image fluid={data.file.childImageSharp.fluid} />
-      </Wrapper>
+      <HeroImagesWrapper>
+        <Image alt="Roxart - Hero Footballowiec" fluid={data.image1.childImageSharp.fluid} />
+        <Image alt="Roxart - Hero ozdoby " fluid={data.image2.childImageSharp.fluid} />
+        <Image alt="Roxart - Hero ozdoby " fluid={data.image3.childImageSharp.fluid} />
+      </HeroImagesWrapper>
     </Container>
+
+    <SecondContainer>
+      <h2>
+        Agencja Reklamowa
+        {' '}
+        <strong>ROXART</strong>
+      </h2>
+      <p>
+        CO WYRÓŻNIA NAS OD INNYCH
+      </p>
+    </SecondContainer>
+    <StandsOutContainer>
+
+      <IndexStandsOutTile
+        fixedValues={data.image4.childImageSharp.fixed}
+        header="NOWOCZESNOŚĆ"
+        paragraph="Nowatorskie podejście do tematu REKLAMY"
+      />
+      <IndexStandsOutTile
+        fixedValues={data.image5.childImageSharp.fixed}
+        header="DOŚWIADCZENIE"
+        paragraph="Spore doświadczenie mimo młodego wieku"
+      />
+      <IndexStandsOutTile
+        fixedValues={data.image6.childImageSharp.fixed}
+        header="ZAANGAŻOWANIE"
+        paragraph="Po prostu kochamy naszą pracę"
+      />
+      <IndexStandsOutTile
+        fixedValues={data.image7.childImageSharp.fixed}
+        header="KOMUNIKATYWNOŚĆ"
+        paragraph="Lubimy rozmawiać z naszymi klientami"
+      />
+      <IndexStandsOutTile
+        fixedValues={data.image8.childImageSharp.fixed}
+        header="PORTFOLIO"
+        paragraph="Jesteśmy z niego dumni!"
+      />
+    </StandsOutContainer>
   </>
 );
 
 export const query = graphql`
   {
-    file(name: {eq: "hero_img"}) {
+    image1: file(name: {eq: "hero_img"}) {
       childImageSharp {
-        fluid(maxWidth: 555, quality: 100) {
+        fluid(maxWidth: 500, quality: 100) {
           ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+    image2: file(name: {eq: "hero_ornament_1"}) {
+      childImageSharp {
+        fluid(maxWidth: 500, quality: 100) {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+    image3: file(name: {eq: "hero_oranment_2"}) {
+      childImageSharp {
+        fluid(maxWidth: 500, quality: 100) {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
+    image4: file(name: {eq: "stands_out1"}) {
+      childImageSharp {
+        fixed(width: 51, height: 51, quality: 100) {
+          ...GatsbyImageSharpFixed_tracedSVG
+        }
+      }
+    }
+    image5: file(name: {eq: "stands_out2"}) {
+      childImageSharp {
+        fixed(width: 51, height: 51, quality: 100) {
+          ...GatsbyImageSharpFixed_tracedSVG
+        }
+      }
+    }
+    image6: file(name: {eq: "stands_out3"}) {
+      childImageSharp {
+        fixed(width: 51, height: 51, quality: 100) {
+          ...GatsbyImageSharpFixed_tracedSVG
+        }
+      }
+    }
+    image7: file(name: {eq: "stands_out4"}) {
+      childImageSharp {
+        fixed(width: 51, height: 51, quality: 100) {
+          ...GatsbyImageSharpFixed_tracedSVG
+        }
+      }
+    }
+    image8: file(name: {eq: "stands_out5"}) {
+      childImageSharp {
+        fixed(width: 51, height: 51, quality: 100) {
+          ...GatsbyImageSharpFixed_tracedSVG
         }
       }
     }

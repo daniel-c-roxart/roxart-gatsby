@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 import MainMenu from './NavigationMenu';
 import NavigationSocialMedia from './NavigationSocialMedia';
-import { logo } from '../../assets/images/logo.gif';
+import logo from '../../assets/images/logo.gif';
 
 const NavigationWrapper = styled.header`
     display: flex;
@@ -82,7 +82,6 @@ const Navigation = () => (
   <NavigationWrapper id="mainMenu">
     <NavigationContainer>
       <NavigatonHeader>Agencja Reklamowa Rzeszów</NavigatonHeader>
-
       <NavigationContact>
         <li><a href="https://www.google.com/maps/place/Kolejowa+1,+35-073+Rzesz%C3%B3w/@50.040542,22.0059381,17z/data=!3m1!4b1!4m5!3m4!1s0x473cfb02a5d79505:0x90e3e9ec9ac04aa1!8m2!3d50.040542!4d22.0081268" target="_blank" rel="noreferrer">ul. Kolejowa 1, 35-073 Rzeszów</a></li>
         <li><a href="mailto:biuro@roxart.pl">biuro@roxart.pl</a></li>
